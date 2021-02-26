@@ -6,6 +6,7 @@ import Chart from '../screens/Chart';
 import Video from '../screens/Video';
 import Search from '../screens/Search';
 import UserKeep from '../screens/UserKeep';
+import { View } from 'react-native';
 
 const TabStack = createBottomTabNavigator();
 
@@ -26,7 +27,11 @@ function MainNavigator() {
         options={{
           tabBarLabel: '투데이',
           tabBarIcon: ({ color }) => {
-            return <Icon name='home' size={18} color={color} />;
+            return (
+              <View>
+                <Icon name='home' size={18} color={color} />
+              </View>
+            );
           },
         }}
       />
