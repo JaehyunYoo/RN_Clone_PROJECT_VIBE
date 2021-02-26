@@ -1,1 +1,0 @@
-# Clone PROJECT RN_VIBE APP
