@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigation';
 import * as SplashScreen from 'expo-splash-screen';
+import { ThemeProvider } from 'styled-components/native';
 import { StatusBar } from 'react-native';
 
 SplashScreen.preventAutoHideAsync()

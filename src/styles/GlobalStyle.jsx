@@ -1,3 +1,1 @@
-export const colors ={
-  dark:"#000",
-}
+import {} from 'styled-components';

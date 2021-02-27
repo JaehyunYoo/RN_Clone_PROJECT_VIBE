@@ -5,6 +5,7 @@ import Carousel from 'react-native-snap-carousel';
 const { width: screenWidth } = Dimensions.get('window');
 
 function CarouselSlide({ listItem }) {
+  
   const carouselRef = useRef(null);
 
   const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -28,13 +29,15 @@ function CarouselSlide({ listItem }) {
         >
           {item.title}
         </Text>
-        <Text style={{color:'#5F5F5F',fontSize:16,marginTop:5}}>{item.subTitle}</Text>
+        <Text style={{ color: '#5F5F5F', fontSize: 16, marginTop: 5 }}>
+          {item.subTitle}
+        </Text>
       </View>
     );
   };
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={{ flex: 1 }}>
       <Carousel
         layout='default'
         ref={carouselRef}
@@ -56,12 +59,12 @@ export default CarouselSlide;
 const styles = StyleSheet.create({
   item: {
     width: screenWidth - 60,
-    height: screenWidth - 200,
+    height: screenWidth - 120,
   },
 
   image: {
     width: screenWidth - 60,
-    height: screenWidth - 200,
+    height: screenWidth - 220,
     resizeMode: 'cover',
   },
   title: {
