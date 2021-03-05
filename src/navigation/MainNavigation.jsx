@@ -1,15 +1,39 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/Home';
 import Chart from '../screens/Chart';
 import Video from '../screens/Video';
 import Search from '../screens/Search';
+import HomeDetail from '../components/home/HomeDetail';
 import UserKeep from '../screens/UserKeep';
 import { View } from 'react-native';
 import MiniPlayer from '../components/player/MiniPlayer';
 
 const TabStack = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName='Home'
+      screenOptions={{
+        headerStyle: { backgroundColor: '#000' },
+        headerBackTitleVisible: false,
+        headerTintColor: '#fff',
+        headerTitle:false
+      }}
+    >
+      <Stack.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name='HomeDetail' component={HomeDetail} />
+    </Stack.Navigator>
+  );
+}
 
 function MainNavigator() {
   return (
@@ -35,7 +59,7 @@ function MainNavigator() {
       >
         <TabStack.Screen
           name='Home'
-          component={HomeScreen}
+          component={HomeStack}
           options={{
             tabBarLabel: '투데이',
             tabBarIcon: ({ color, size }) => {

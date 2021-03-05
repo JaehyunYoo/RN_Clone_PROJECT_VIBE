@@ -20,32 +20,23 @@ export default function Player() {
   const [duration, setDuration] = useState(null);
   const [position, setPostion] = useState(null);
 
-  const song = [
-    {
-      id: 3,
-      thumbnail:
-        'https://musicmeta-phinf.pstatic.net/album/002/938/2938375.jpg?type=r360Fll&v=20210118143211',
-      title: 'Hate you',
-      artist: '백예린',
-      music:
-        'https://res.cloudinary.com/wecodesocial/video/upload/v1614694880/mp3/%E1%84%87%E1%85%A2%E1%86%A8%E1%84%8B%E1%85%A8%E1%84%85%E1%85%B5%E1%86%AB_Yerin_Baek_Hate_you_MV_s86ncj.mp3',
-    },
-    {
-      id: 4,
-      thumbnail:
-        'https://musicmeta-phinf.pstatic.net/album/005/151/5151274.jpg?type=r480Fll&v=20201216160407',
-      title: '잘할게',
-      artist: '이승기',
-      music:
-        'https://res.cloudinary.com/wecodesocial/video/upload/v1614694880/mp3/%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%E1%86%BC%E1%84%80%E1%85%B5-%E1%84%8C%E1%85%A1%E1%86%AF%E1%84%92%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A6_llccbd.mp3',
-    },
-  ];
+  const song = {
+    id: 1,
+    thumbnail:
+      'https://musicmeta-phinf.pstatic.net/album/003/382/3382648.jpg?type=r360Fll&v=20210118143210',
+    title: '불티(Spark)',
+    artist: '태연(TAEYEON)',
+    music:
+      'https://res.cloudinary.com/wecodesocial/video/upload/v1614694882/mp3/%E1%84%90%E1%85%A2%E1%84%92%E1%85%A7%E1%86%AB_%E1%84%87%E1%85%AE%E1%86%AF%E1%84%90%E1%85%B5_npku7b.mp3',
+  };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    currentPlaySong();
+  }, []);
 
   // 상태
   const playerStatus = (status) => {
-    console.log(status);
+
     setPlaying(status.isPlaying);
     setDuration(status.durationMillis);
     setPostion(status.positionMillis);
@@ -54,7 +45,7 @@ export default function Player() {
   // 플레이
   const currentPlaySong = async () => {
     const { sound } = await Audio.Sound.createAsync(
-      { uri: song.uri },
+      { uri: song.music },
       { shouldPlay: isPlaying },
       playerStatus
     );
@@ -74,13 +65,13 @@ export default function Player() {
     if (sound === null || duration === null || position === null) return 0;
     return Math.floor((position / duration) * 100);
   };
-  console.log(sound, '<<<<<<<<<<sound');
+
   return (
     <PlayerWrap>
       <PlayBar width={getProgress()} />
       <PlayerContainer>
         <LeftContainer>
-          <SongImage source={{ uri: song.imgUrl }} />
+          <SongImage source={{ uri: song.thumbnail }} />
           <SongTitleWrap>
             <Text style={{ color: '#fff', fontSize: 16, paddingBottom: 12 }}>
               {song.title}

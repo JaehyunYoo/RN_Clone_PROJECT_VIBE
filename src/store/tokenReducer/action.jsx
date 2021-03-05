@@ -26,3 +26,4 @@ export const globalToken = () => async (dispatch) => {
     console.log(msg);
   }
 };
+

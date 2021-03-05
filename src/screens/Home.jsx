@@ -1,38 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
-import styled from 'styled-components';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
 import axios from 'axios';
 import CarouselSlide from '../components/home/CarouselSlide';
-import { API_CATEGEORY } from '../config/Api';
+import { API_LIST, API_CATEGORI } from '../config/Api';
 import { globalToken } from '../store/tokenReducer/action';
 import { LIST_SLIDER } from '../data/data';
+import Recommend from '../components/home/Recommend';
 
-export default function Home() {
-  const token = useSelector((state) => state.tokenReducer);
+export default function Home({ navigation }) {
   const [data, setData] = useState();
+  const token = useSelector((state) => state.tokenReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(globalToken());
-    const fetchCateGory = async () => {
-      const response = await axios(API_CATEGEORY, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      });
-      setData(response.data.categories.items.slice(0, 8));
+    const fetchData = async () => {
+      const response = await axios(API_CATEGORI);
+      setData(response.data);
     };
-    fetchCateGory();
+    token.length > 0 ? dispatch(globalToken()) : fetchData();
   }, []);
-  console.log(data, '끝난건가????');
+
   return (
     <HomeWrap>
       <Container>
@@ -46,7 +35,7 @@ export default function Home() {
         <CarouselSlide listItem={LIST_SLIDER} />
         <SecondeTitle>좋아하는 아티스트를 선택해 주세요.</SecondeTitle>
         <SectionImage source={require('../../assets/images/event.png')} />
-        <Text style={{ color: '#545454', textAlign: 'center', fontSize: 18 }}>
+        <Text style={{ color: '#8c7777', textAlign: 'center', fontSize: 18 }}>
           매일 새로운 믹스테잎이 업데이트 됩니다.
         </Text>
         <SelectBtn>
@@ -61,6 +50,7 @@ export default function Home() {
             선택하기
           </Text>
         </SelectBtn>
+        <Recommend recomData={data?.recomList} navigation={navigation} />
       </Container>
     </HomeWrap>
   );
@@ -89,8 +79,8 @@ const TopTitle = styled.Text`
   font-weight: bold;
 `;
 const TopProfile = styled.Image`
-  width: ${(props) => props.theme.screenWidth - 385};
-  height: ${(props) => props.theme.screenWidth - 385};
+  width: ${(props) => props.theme.screenWidth - 385 + 'px'};
+  height: ${(props) => props.theme.screenWidth - 385 + 'px'};
 `;
 const SecondeTitle = styled.Text`
   margin: 26px 0 16px 0;
@@ -100,10 +90,10 @@ const SecondeTitle = styled.Text`
 `;
 const SectionImage = styled.Image`
   margin: 16px 0;
-  width: ${(props) => props.theme.screenWidth - 30};
+  width: ${(props) => props.theme.screenWidth - 30 + 'px'};
 `;
 const SelectBtn = styled.TouchableOpacity`
-  width: ${(props) => props.theme.screenWidth - 320};
+  width: ${(props) => props.theme.screenWidth - 320 + 'px'};
   border: 1px solid red;
   margin: 15px auto;
   padding: 10px;
