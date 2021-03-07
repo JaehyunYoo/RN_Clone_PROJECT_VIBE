@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/Home';
-import Chart from '../screens/Chart';
+
 import Video from '../screens/Video';
 import Search from '../screens/Search';
 import HomeDetail from '../components/home/HomeDetail';
@@ -20,7 +20,7 @@ function HomeStack() {
       initialRouteName='Home'
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#000',
+          backgroundColor: '#000000',
           borderColor: '#000',
           shadowColor: 'transparent',
         },
@@ -72,18 +72,6 @@ function MainNavigator() {
                 <View>
                   <Icon name='home' size={size} color={color} />
                 </View>
-              );
-            },
-          }}
-        />
-        <TabStack.Screen
-          name='Chart'
-          component={Chart}
-          options={{
-            tabBarLabel: '차트',
-            tabBarIcon: ({ color, size }) => {
-              return (
-                <Icon name='ios-musical-notes' size={size} color={color} />
               );
             },
           }}

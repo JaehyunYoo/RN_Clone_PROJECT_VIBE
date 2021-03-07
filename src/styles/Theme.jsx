@@ -2,6 +2,7 @@ import { css } from 'styled-components/native';
 import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
 
 const colors = {
   whiteColor: '#ffffff',
@@ -27,13 +28,26 @@ const flexRow = css`
   flex: 1;
   flex-direction: row;
 `;
+
+const flexEndRow = css`
+  flex: 1;
+  align-items: flex-end;
+  flex-direction: row;
+`;
+const AlignJustifyCenter = css`
+  align-items: center;
+  justify-content: center;
+`;
 const theme = {
   ...colors,
   blackWrap,
+  AlignJustifyCenter,
   screenPadding,
   screenWidth,
   flexRow,
+  flexEndRow,
   screenFullPadding,
+  screenHeight,
 };
 
 export default theme;
