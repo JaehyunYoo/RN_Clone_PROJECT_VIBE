@@ -4,9 +4,9 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import axios from 'axios';
 import CarouselSlide from '../components/home/CarouselSlide';
-import { API_LIST, API_CATEGORI } from '../config/Api';
 import { globalToken } from '../store/tokenReducer/action';
 import { LIST_SLIDER } from '../data/data';
+import { API_CATEGORI } from '../config/Api';
 import Recommend from '../components/home/Recommend';
 
 export default function Home({ navigation }) {
@@ -19,7 +19,8 @@ export default function Home({ navigation }) {
       const response = await axios(API_CATEGORI);
       setData(response.data);
     };
-    token.length > 0 ? dispatch(globalToken()) : fetchData();
+    dispatch(globalToken());
+    fetchData();
   }, []);
 
   return (

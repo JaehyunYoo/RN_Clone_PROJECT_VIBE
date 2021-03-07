@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from 'styled-components/native';
-import { StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import theme from './src/styles/Theme';
@@ -28,8 +28,8 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <StatusBar barStyle='light-content' />
-          <MainNavigator />
+            <StatusBar barStyle='light-content' />
+            <MainNavigator />
         </NavigationContainer>
       </ThemeProvider>
     </Provider>

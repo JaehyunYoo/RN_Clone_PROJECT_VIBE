@@ -20,11 +20,12 @@ const blackWrap = css`
 const screenPadding = css`
   padding: 0 15px;
 `;
-
+const screenFullPadding = css`
+  padding: 15px;
+`;
 const flexRow = css`
   flex: 1;
   flex-direction: row;
-  
 `;
 const theme = {
   ...colors,
@@ -32,6 +33,7 @@ const theme = {
   screenPadding,
   screenWidth,
   flexRow,
+  screenFullPadding,
 };
 
 export default theme;

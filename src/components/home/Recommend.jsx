@@ -3,7 +3,6 @@ import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 export default function MusicFlatList({ recomData, navigation }) {
-  console.log('프롭스', recomData);
   const renderItem = ({ item }) => {
     return (
       <>
@@ -11,6 +10,9 @@ export default function MusicFlatList({ recomData, navigation }) {
           onPress={() =>
             navigation.navigate('HomeDetail', {
               id: item.id,
+              img: item.thumbnail,
+              title:item.albumTitle,
+              description:item.description
             })
           }
         >
@@ -31,7 +33,7 @@ export default function MusicFlatList({ recomData, navigation }) {
       </>
     );
   };
-  console.log(recomData, '<<<<<<<<<<');
+
   return (
     <RecomWrap>
       <SectionTitle>{recomData?.title}</SectionTitle>
@@ -55,7 +57,7 @@ const SectionTitle = styled.Text`
   margin-bottom: 16px;
 `;
 const Carousel = styled.Image`
-  width: 215;
-  height: 215;
-  margin-right: 24px;
+  width: 200px;
+  height: 200px;
+  margin-right: 28px;
 `;

@@ -19,10 +19,15 @@ function HomeStack() {
     <Stack.Navigator
       initialRouteName='Home'
       screenOptions={{
-        headerStyle: { backgroundColor: '#000' },
+        headerStyle: {
+          backgroundColor: '#000',
+          borderColor: '#000',
+          shadowColor: 'transparent',
+        },
+
         headerBackTitleVisible: false,
         headerTintColor: '#fff',
-        headerTitle:false
+        headerTitle: false,
       }}
     >
       <Stack.Screen
@@ -47,12 +52,12 @@ function MainNavigator() {
             marginTop: 5,
             width: '100%',
             height: 60,
-            borderTopColor: '#000',
             backgroundColor: '#1F1F1F',
           },
           style: {
             height: 80,
-            borderTopColor: '#000',
+            borderTopColor: '#1F1F1F',
+            borderBottomColor: '#1F1F1F',
             backgroundColor: '#1F1F1F',
           },
         }}
