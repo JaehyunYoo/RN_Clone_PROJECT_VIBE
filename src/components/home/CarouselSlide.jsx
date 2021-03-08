@@ -16,7 +16,7 @@ function CarouselSlide({ listItem }) {
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.item}>
+      <View style={styles.item}  keyExtractor={(item) => String(item.id)}>
         <Text style={styles.title}>{item.trend}</Text>
         <Image source={{ uri: item.imgUrl }} style={styles.image} />
         <Text

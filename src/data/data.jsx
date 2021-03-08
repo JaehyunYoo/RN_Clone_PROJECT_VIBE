@@ -18,8 +18,13 @@ export const LIST_SLIDER = [
   {
     id: 3,
     trend: '핫이슈',
-    imgUrl: 'https://music-phinf.pstatic.net/20210217_116/1613526065853X4trP_PNG/%BE%C6%C0%CC%C1%EE%BF%F8400.png?type=f310_182',
+    imgUrl:
+      'https://music-phinf.pstatic.net/20210217_116/1613526065853X4trP_PNG/%BE%C6%C0%CC%C1%EE%BF%F8400.png?type=f310_182',
     title: '이 앨범도 놓치지 마오',
     subTitle: '굵직굵직한 힙합/알앤비 앨범들',
   },
+];
+
+export const MUSIC_SECTION = [
+  
 ];
