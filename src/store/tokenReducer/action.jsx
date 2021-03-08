@@ -1,5 +1,5 @@
 import { GET_TOKEN } from '../types';
-import { API_TOKEN, TOKEN_ID, TOKEN_SECRET } from '../../config/Api';
+import { API_TOKEN_URL, TOKEN_ID, TOKEN_SECRET } from '../../config/Api';
 import base64 from 'base-64';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ export const token = (getToken) => {
 
 export const globalToken = () => async (dispatch) => {
   try {
-    const responese = await axios(API_TOKEN, {
+    const responese = await axios(API_TOKEN_URL, {
       method: 'POST',
       headers: {
         Authorization: AUTH,

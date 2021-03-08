@@ -17,7 +17,6 @@ import styled from 'styled-components/native';
 import axios from 'axios';
 import { API_PLAYLIST } from '../../config/Api';
 
-
 const colors = [
   'rgba(0,0,0,1)',
   'rgba(0,0,0,1)',
@@ -32,7 +31,7 @@ function HomeDetail({ route }) {
   const { id, img, title, description } = route.params;
   const token = useSelector((state) => state.tokenReducer);
 
-  console.log(token, img);
+  console.log(tracks);
   useEffect(() => {
     const fetchDatas = async () => {
       try {

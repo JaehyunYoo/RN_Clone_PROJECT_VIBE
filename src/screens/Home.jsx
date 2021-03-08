@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
     dispatch(globalToken());
     fetchData();
   }, []);
-
+  console.log(token);
   return (
     <HomeWrap>
       <Container>
