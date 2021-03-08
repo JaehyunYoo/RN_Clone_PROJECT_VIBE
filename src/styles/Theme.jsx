@@ -22,6 +22,7 @@ const screenPadding = css`
   padding: 0 15px;
 `;
 const screenFullPadding = css`
+  flex: 1;
   padding: 15px;
 `;
 const flexRow = css`
@@ -38,8 +39,24 @@ const AlignJustifyCenter = css`
   align-items: center;
   justify-content: center;
 `;
+
+const AlbumImage = css`
+  height: 182px;
+`;
+
+const PlayBtn = css`
+  width: 100%;
+  background-color: #1a1a1a;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 3px;
+`;
 const theme = {
   ...colors,
+  PlayBtn,
+  AlbumImage,
   blackWrap,
   AlignJustifyCenter,
   screenPadding,

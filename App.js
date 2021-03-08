@@ -28,8 +28,10 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <StatusBar barStyle='light-content' />
-          <MainNavigator />
+   
+            <StatusBar barStyle='light-content' />
+            <MainNavigator />
+     
         </NavigationContainer>
       </ThemeProvider>
     </Provider>

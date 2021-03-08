@@ -63,6 +63,7 @@ const Container = styled.ScrollView`
   display: flex;
   flex: 1;
   margin-top: 10px;
+
   ${(props) => props.theme.screenPadding};
 `;
 

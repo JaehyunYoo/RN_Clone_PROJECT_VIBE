@@ -20,11 +20,11 @@ function HomeStack() {
       initialRouteName='Home'
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
           borderColor: '#000',
           shadowColor: 'transparent',
         },
-
+        headerTransparent:true,
         headerBackTitleVisible: false,
         headerTintColor: '#fff',
         headerTitle: false,
