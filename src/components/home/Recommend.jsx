@@ -11,22 +11,15 @@ export default function MusicFlatList({ recomData, navigation }) {
             navigation.navigate('HomeDetail', {
               id: item.id,
               img: item.thumbnail,
-              title:item.albumTitle,
-              description:item.description
+              title: item.albumTitle,
+              description: item.description,
             })
           }
+          activeOpacity={0.9}
         >
           <RecomWrap>
             <Carousel source={{ uri: item.thumbnail }} />
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 16,
-                marginTop: 16,
-              }}
-            >
-              {item.albumTitle}
-            </Text>
+            <CarouselTitle>{item.albumTitle}</CarouselTitle>
             <Text style={{ color: '#ccc' }}>{item.description}</Text>
           </RecomWrap>
         </TouchableOpacity>
@@ -51,13 +44,15 @@ const RecomWrap = styled.View`
   padding: 15px 0;
 `;
 const SectionTitle = styled.Text`
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 16px;
+  ${(props) => props.theme.TitleDescription};
 `;
 const Carousel = styled.Image`
   width: 200px;
   height: 200px;
   margin-right: 28px;
+`;
+const CarouselTitle = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  margin-top: 16px;
 `;

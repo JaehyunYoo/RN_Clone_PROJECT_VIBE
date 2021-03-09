@@ -16,22 +16,14 @@ import { AntDesign } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import axios from 'axios';
 import { API_PLAYLIST } from '../../config/Api';
-
-const colors = [
-  'rgba(0,0,0,1)',
-  'rgba(0,0,0,1)',
-  'rgba(0,0,0,1)',
-  'rgba(0,0,0,.98)',
-  'rgba(0,0,0,.8)',
-];
+import { colors } from '../../data/data';
+import { FlatList } from 'react-native-gesture-handler';
 
 function HomeDetail({ route }) {
   const [tracks, setTracks] = useState();
-  const [tracksLength, setTrackLength] = useState();
   const { id, img, title, description } = route.params;
   const token = useSelector((state) => state.tokenReducer);
 
-  console.log(tracks);
   useEffect(() => {
     const fetchDatas = async () => {
       try {
@@ -41,17 +33,46 @@ function HomeDetail({ route }) {
           },
           params: {
             market: 'KR',
-            fields: 'tracks.items(track.id,track.name,track.artists.name)',
+            fields:
+              'tracks.items(track.id,track.name,track.album.images,track.artists.name)',
           },
         });
-        setTracks(response.data.tracks.items);
-        setTrackLength(response.data.tracks.items.length);
+        setTracks(response.data.tracks.items.slice(0, 20));
       } catch (error) {
         console.warn(error);
       }
     };
     fetchDatas();
   }, []);
+
+  const renderitem = ({ item, idx }) => {
+    return (
+      <View style={{ marginTop: 15, flex: 1 }}>
+        <TouchableOpacity activeOpacity={0.9}>
+          <ThumbnailWrap>
+            <View style={{ flex: 1, width: 60, height: 60 }}>
+              <MusicThumbnail
+                source={{ uri: item.track.album.images[0].url }}
+              />
+            </View>
+            <View style={{ flex: 3 }}>
+              <TrackName>{item.track.name}</TrackName>
+              <View>
+                <FlatList
+                  data={item.track.artists}
+                  horizontal
+                  renderItem={({ item }) => {
+                    return <ArtistsName>{item.name}</ArtistsName>;
+                  }}
+                  keyExtractor={(item, idx) => String(idx + 1)}
+                />
+              </View>
+            </View>
+          </ThumbnailWrap>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -83,23 +104,25 @@ function HomeDetail({ route }) {
                   <AlbumSubTitle>{description}</AlbumSubTitle>
                 </View>
                 <PlayBtnWrap style={{}}>
-                  <PlayBtnOpacity>
+                  <PlayBtnOpacity activeOpacity={0.8}>
                     <AntDesign name='caretright' size={20} color='white' />
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        paddingLeft: 5,
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      PLAY
-                    </Text>
+                    <PlayBtnTitle>PLAY</PlayBtnTitle>
                   </PlayBtnOpacity>
                 </PlayBtnWrap>
               </PlayTitleWrap>
             </DescriptionWrap>
-            <View style={{ flex: 3 }}></View>
+            <View style={{ flex: 3 }}>
+              <View style={{ paddingTop: 20, marginBottom: 20 }}>
+                <TotalMusicsTimeline>
+                  2일전 업데이트 : 총{tracks?.length} 곡, 2시간 47분
+                </TotalMusicsTimeline>
+              </View>
+              <FlatList
+                data={tracks}
+                renderItem={renderitem}
+                keyExtractor={(item, idx) => String(idx)}
+              />
+            </View>
           </HomeDatailsWrap>
         </SafeAreaView>
       </LinearGradient>
@@ -137,6 +160,33 @@ const PlayBtnWrap = styled.View`
 `;
 const PlayBtnOpacity = styled.TouchableOpacity`
   ${(props) => props.theme.PlayBtn};
+`;
+const PlayBtnTitle = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  margin-left: 10px;
+  font-weight: bold;
+`;
+const TotalMusicsTimeline = styled.Text`
+  color: #fff;
+  font-size: 16px;
+`;
+const MusicThumbnail = styled.Image`
+  width: 60px;
+  height: 60px;
+`;
+const TrackName = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+const ThumbnailWrap = styled.View`
+  ${(props) => props.theme.FlexRowCenter};
+`;
+const ArtistsName = styled.Text`
+  font-size: 14px;
+  color: #6a6a6a;
 `;
 const styles = StyleSheet.create({
   container: {

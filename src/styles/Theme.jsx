@@ -35,6 +35,11 @@ const flexEndRow = css`
   align-items: flex-end;
   flex-direction: row;
 `;
+const FlexRowCenter = css`
+  flex: 1;
+  align-items: center;
+  flex-direction: row;
+`;
 const AlignJustifyCenter = css`
   align-items: center;
   justify-content: center;
@@ -53,9 +58,17 @@ const PlayBtn = css`
   padding: 12px;
   border-radius: 3px;
 `;
+const TitleDescription = css`
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+`;
 const theme = {
   ...colors,
   PlayBtn,
+  TitleDescription,
+  FlexRowCenter,
   AlbumImage,
   blackWrap,
   AlignJustifyCenter,

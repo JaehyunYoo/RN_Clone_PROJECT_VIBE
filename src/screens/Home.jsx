@@ -9,6 +9,7 @@ import { LIST_SLIDER } from '../data/data';
 import { API_CATEGORI } from '../config/Api';
 import Recommend from '../components/home/Recommend';
 
+
 export default function Home({ navigation }) {
   const [data, setData] = useState();
   const token = useSelector((state) => state.tokenReducer);
@@ -52,6 +53,9 @@ export default function Home({ navigation }) {
           </Text>
         </SelectBtn>
         <Recommend recomData={data?.recomList} navigation={navigation} />
+        <Recommend recomData={data?.djStation} navigation={navigation} />
+        <Recommend recomData={data?.glbolKpop} navigation={navigation} />
+        <Recommend recomData={data?.theme} navigation={navigation} />
       </Container>
     </HomeWrap>
   );

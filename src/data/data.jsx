@@ -25,6 +25,10 @@ export const LIST_SLIDER = [
   },
 ];
 
-export const MUSIC_SECTION = [
-  
+export const colors = [
+  'rgba(0,0,0,1)',
+  'rgba(0,0,0,1)',
+  'rgba(0,0,0,1)',
+  'rgba(0,0,0,.98)',
+  'rgba(0,0,0,.8)',
 ];
