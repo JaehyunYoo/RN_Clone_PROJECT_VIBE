@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Audio } from 'expo-av';
-import { TrackPlayer } from 'react-native-track-player';
+// import { TrackPlayer } from 'react-native-track-player';
 import { AntDesign } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
